@@ -1,0 +1,4 @@
+export enum LocalStorageKeys {
+  USERNAME_LOGIN = 'USERNAME_LOGIN',
+  PASSWORD_LOGIN = 'PASSWORD_LOGIN',
+}

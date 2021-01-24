@@ -1,12 +1,18 @@
+import { Box } from '@chakra-ui/react';
+import { ConnectedRouter } from 'connected-react-router';
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Box, Button, Heading, Image } from '@chakra-ui/react';
-import icon from '../assets/icon.svg';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { BrowserRouter as Router, Switch, useRoutes } from 'react-router-dom';
+import { ROUTES } from 'routes';
+import AdministratorRoleVerification from './components/AdministratorRoleVerification';
+import { history } from './configureStore';
 
-const Hello = () => {
+const Hello: React.FC = () => {
   return (
-    <Box>
-      <Box className="Hello">
+    <Box h="100vh" w="100vw" overflow="auto">
+      {/* <DeviceProfile /> */}
+      <AdministratorRoleVerification />
+      {/* <Box className="Hello">
         <Image width="200px" alt="icon" src={icon} />
       </Box>
       <Heading>electron-react-boilerplate</Heading>
@@ -23,17 +29,26 @@ const Hello = () => {
           </span>
           Donate
         </Button>
-      </Box>
+      </Box> */}
     </Box>
   );
 };
 
+const queryClient = new QueryClient();
+
 export default function App() {
+  useRoute;
   return (
-    <Router>
-      <Switch>
-        <Route path="/" component={Hello} />
-      </Switch>
-    </Router>
+    <ConnectedRouter history={history}>
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <Switch>
+            {Object.entries(ROUTES).map(([key, Route]) => (
+              <Route key={key} />
+            ))}
+          </Switch>
+        </Router>
+      </QueryClientProvider>
+    </ConnectedRouter>
   );
 }
