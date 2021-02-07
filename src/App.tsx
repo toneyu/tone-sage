@@ -1,39 +1,50 @@
+import { Box } from '@chakra-ui/react';
+import { ConnectedRouter } from 'connected-react-router';
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Box, Button, Heading, Image } from '@chakra-ui/react';
-import icon from '../assets/icon.svg';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+} from 'react-router-dom';
+import AdministratorRoleVerification from './components/AdministratorRoleVerification';
+import { history } from './store/configureStore';
+// import Login from './components/Login';
+import { useTypedSelector } from './utils/hooks';
+import { isAuthenticatedSelector } from './store/selectors/auth';
 
-const Hello = () => {
+const queryClient = new QueryClient();
+
+const App: React.FC = () => {
+  const isAuthenticated = useTypedSelector(isAuthenticatedSelector);
+
   return (
-    <Box>
-      <Box className="Hello">
-        <Image width="200px" alt="icon" src={icon} />
-      </Box>
-      <Heading>electron-react-boilerplate</Heading>
-      <Box className="Hello">
-        <Button type="button">
-          <span role="img" aria-label="books">
-            📚
-          </span>
-          Read our docs
-        </Button>
-        <Button type="button">
-          <span role="img" aria-label="books">
-            🙏
-          </span>
-          Donate
-        </Button>
-      </Box>
-    </Box>
+    <ConnectedRouter history={history}>
+      <QueryClientProvider client={queryClient}>
+        <Box h="100vh" w="100vw" overflow="auto">
+          {/*<Router>*/}
+          {/*  <Box>*/}
+          {/*    /!* <Route*/}
+          {/*      path="/admin"*/}
+          {/*      element={*/}
+          {/*        isAuthenticated ? (*/}
+          {/*          <AdministratorRoleVerification />*/}
+          {/*        ) : (*/}
+          {/*          <Navigate to="/login" />*/}
+          {/*        )*/}
+          {/*      }*/}
+          {/*    />*/}
+          {/*    <Route path="/login" element={<Login />} /> *!/*/}
+          {/*    /!* TODO Move to authenticated route above *!/*/}
+          {/*    <Route path="/" element={<AdministratorRoleVerification />} />*/}
+          {/*  </Box>*/}
+          {/*</Router>*/}
+          <AdministratorRoleVerification />
+        </Box>
+      </QueryClientProvider>
+    </ConnectedRouter>
   );
 };
 
-export default function App() {
-  return (
-    <Router>
-      <Switch>
-        <Route path="/" component={Hello} />
-      </Switch>
-    </Router>
-  );
-}
+export default App;
