@@ -1,0 +1,1156 @@
+{
+  "DeviceProfile": [
+    {
+      "Id": "f88e9e63-fe2b-433b-bd36-e70b940caa16",
+      "Version": "",
+      "Name": "AMR Devices",
+      "Description": "Americas Devices",
+      "Type": 1,
+      "TypeName": "Tesira",
+      "UseSageVue": false,
+      "MonitorDevices": false,
+      "Components": [
+        {
+          "Name": "Network",
+          "Type": 1,
+          "TypeName": "Network",
+          "IncludeInProfile": "Yes",
+          "Settings": [
+            {
+              "Type": 101,
+              "TypeName": "EnableTelnet",
+              "ElementNumber": 0,
+              "DataType": "Bool",
+              "Value": false,
+              "IncludeInProfile": "Yes",
+              "Settings": []
+            },
+            {
+              "Type": 102,
+              "TypeName": "EnableMulticast",
+              "ElementNumber": 0,
+              "DataType": "Bool",
+              "Value": true,
+              "IncludeInProfile": "Yes",
+              "Settings": []
+            },
+            {
+              "Type": 103,
+              "TypeName": "EnableSSH",
+              "ElementNumber": 0,
+              "DataType": "Bool",
+              "Value": false,
+              "IncludeInProfile": "Yes",
+              "Settings": []
+            },
+            {
+              "Type": 104,
+              "TypeName": "Domain",
+              "ElementNumber": 0,
+              "DataType": "String",
+              "Value": "dir.svc.accenture.com",
+              "IncludeInProfile": "Yes",
+              "Settings": []
+            },
+            {
+              "Type": 105,
+              "TypeName": "NetworkDNS",
+              "ElementNumber": 0,
+              "DataType": "Setting",
+              "Value": "",
+              "IncludeInProfile": "Yes",
+              "Settings": [
+                {
+                  "Type": 106,
+                  "TypeName": "PrimaryDNS",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "10.30.23.130",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 107,
+                  "TypeName": "SecondaryDNS",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "10.30.23.131",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "VoIP",
+          "Type": 2,
+          "TypeName": "VoIP",
+          "IncludeInProfile": "No",
+          "Settings": [
+            {
+              "Type": 201,
+              "TypeName": "VLAN",
+              "ElementNumber": 0,
+              "DataType": "Setting",
+              "Value": "",
+              "IncludeInProfile": "No",
+              "Settings": [
+                {
+                  "Type": 203,
+                  "TypeName": "VLANId",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 202,
+                  "TypeName": "VLANTagging",
+                  "ElementNumber": 0,
+                  "DataType": "Bool",
+                  "Value": false,
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                }
+              ]
+            },
+            {
+              "Type": 204,
+              "TypeName": "Network",
+              "ElementNumber": 0,
+              "DataType": "Setting",
+              "Value": "",
+              "IncludeInProfile": "No",
+              "Settings": [
+                {
+                  "Type": 205,
+                  "TypeName": "DomainName",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 206,
+                  "TypeName": "DNSPrimary",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 207,
+                  "TypeName": "DNSSecondary",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                }
+              ]
+            },
+            {
+              "Type": 208,
+              "TypeName": "VoIPLines",
+              "ElementNumber": 0,
+              "DataType": "Setting",
+              "Value": "",
+              "IncludeInProfile": "No",
+              "Settings": [
+                {
+                  "Type": 209,
+                  "TypeName": "VoIPLine",
+                  "ElementNumber": 1,
+                  "DataType": "SettingCollection",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": [
+                    {
+                      "Type": 210,
+                      "TypeName": "ProxyVendor",
+                      "ElementNumber": 1,
+                      "DataType": "String",
+                      "Value": "PROXY_GENERIC",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 211,
+                      "TypeName": "ProxyAddress",
+                      "ElementNumber": 1,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 212,
+                      "TypeName": "ProxyPort",
+                      "ElementNumber": 1,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 213,
+                      "TypeName": "SIPDomain",
+                      "ElementNumber": 1,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 218,
+                      "TypeName": "BIOSDomain",
+                      "ElementNumber": 1,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    }
+                  ]
+                },
+                {
+                  "Type": 209,
+                  "TypeName": "VoIPLine",
+                  "ElementNumber": 2,
+                  "DataType": "SettingCollection",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": [
+                    {
+                      "Type": 210,
+                      "TypeName": "ProxyVendor",
+                      "ElementNumber": 2,
+                      "DataType": "String",
+                      "Value": "PROXY_GENERIC",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 211,
+                      "TypeName": "ProxyAddress",
+                      "ElementNumber": 2,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 212,
+                      "TypeName": "ProxyPort",
+                      "ElementNumber": 2,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 213,
+                      "TypeName": "SIPDomain",
+                      "ElementNumber": 2,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 218,
+                      "TypeName": "BIOSDomain",
+                      "ElementNumber": 2,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "802.1X",
+          "Type": 3,
+          "TypeName": "_8021X",
+          "IncludeInProfile": "No",
+          "Settings": [
+            {
+              "Type": 301,
+              "TypeName": "_8021X",
+              "ElementNumber": 0,
+              "DataType": "Setting",
+              "Value": "",
+              "IncludeInProfile": "No",
+              "Settings": [
+                {
+                  "Type": 302,
+                  "TypeName": "Interface",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "Control",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 303,
+                  "TypeName": "Mode",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "Disabled",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 304,
+                  "TypeName": "FastMethod",
+                  "ElementNumber": 0,
+                  "DataType": "Bool",
+                  "Value": false,
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 305,
+                  "TypeName": "AnonIdentity",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 306,
+                  "TypeName": "Identity",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 307,
+                  "TypeName": "IdentityPswd",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 308,
+                  "TypeName": "RootCertificate",
+                  "ElementNumber": 0,
+                  "DataType": "ByteArray",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 309,
+                  "TypeName": "ClientCertificate",
+                  "ElementNumber": 0,
+                  "DataType": "ByteArray",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "Labels",
+          "Type": 4,
+          "TypeName": "Labels",
+          "IncludeInProfile": "No",
+          "Settings": [
+            {
+              "Type": 401,
+              "TypeName": "Labels",
+              "ElementNumber": 0,
+              "DataType": "StringList",
+              "Value": "",
+              "IncludeInProfile": "No",
+              "Settings": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "986fbbf1-3caa-42c5-92b7-28903f95a71c",
+      "Version": "",
+      "Name": "EMEA Devices",
+      "Description": "Europe, Middle East, & Africa Devices",
+      "Type": 1,
+      "TypeName": "Tesira",
+      "UseSageVue": false,
+      "MonitorDevices": false,
+      "Components": [
+        {
+          "Name": "Network",
+          "Type": 1,
+          "TypeName": "Network",
+          "IncludeInProfile": "Yes",
+          "Settings": [
+            {
+              "Type": 101,
+              "TypeName": "EnableTelnet",
+              "ElementNumber": 0,
+              "DataType": "Bool",
+              "Value": false,
+              "IncludeInProfile": "Yes",
+              "Settings": []
+            },
+            {
+              "Type": 102,
+              "TypeName": "EnableMulticast",
+              "ElementNumber": 0,
+              "DataType": "Bool",
+              "Value": true,
+              "IncludeInProfile": "Yes",
+              "Settings": []
+            },
+            {
+              "Type": 103,
+              "TypeName": "EnableSSH",
+              "ElementNumber": 0,
+              "DataType": "Bool",
+              "Value": false,
+              "IncludeInProfile": "Yes",
+              "Settings": []
+            },
+            {
+              "Type": 104,
+              "TypeName": "Domain",
+              "ElementNumber": 0,
+              "DataType": "String",
+              "Value": "dir.svc.accenture.com",
+              "IncludeInProfile": "Yes",
+              "Settings": []
+            },
+            {
+              "Type": 105,
+              "TypeName": "NetworkDNS",
+              "ElementNumber": 0,
+              "DataType": "Setting",
+              "Value": "",
+              "IncludeInProfile": "Yes",
+              "Settings": [
+                {
+                  "Type": 106,
+                  "TypeName": "PrimaryDNS",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "10.130.23.130",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 107,
+                  "TypeName": "SecondaryDNS",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "10.130.23.131",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "VoIP",
+          "Type": 2,
+          "TypeName": "VoIP",
+          "IncludeInProfile": "No",
+          "Settings": [
+            {
+              "Type": 201,
+              "TypeName": "VLAN",
+              "ElementNumber": 0,
+              "DataType": "Setting",
+              "Value": "",
+              "IncludeInProfile": "No",
+              "Settings": [
+                {
+                  "Type": 203,
+                  "TypeName": "VLANId",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 202,
+                  "TypeName": "VLANTagging",
+                  "ElementNumber": 0,
+                  "DataType": "Bool",
+                  "Value": false,
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                }
+              ]
+            },
+            {
+              "Type": 204,
+              "TypeName": "Network",
+              "ElementNumber": 0,
+              "DataType": "Setting",
+              "Value": "",
+              "IncludeInProfile": "No",
+              "Settings": [
+                {
+                  "Type": 205,
+                  "TypeName": "DomainName",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 206,
+                  "TypeName": "DNSPrimary",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 207,
+                  "TypeName": "DNSSecondary",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                }
+              ]
+            },
+            {
+              "Type": 208,
+              "TypeName": "VoIPLines",
+              "ElementNumber": 0,
+              "DataType": "Setting",
+              "Value": "",
+              "IncludeInProfile": "No",
+              "Settings": [
+                {
+                  "Type": 209,
+                  "TypeName": "VoIPLine",
+                  "ElementNumber": 1,
+                  "DataType": "SettingCollection",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": [
+                    {
+                      "Type": 210,
+                      "TypeName": "ProxyVendor",
+                      "ElementNumber": 1,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 211,
+                      "TypeName": "ProxyAddress",
+                      "ElementNumber": 1,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 212,
+                      "TypeName": "ProxyPort",
+                      "ElementNumber": 1,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 213,
+                      "TypeName": "SIPDomain",
+                      "ElementNumber": 1,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 218,
+                      "TypeName": "BIOSDomain",
+                      "ElementNumber": 1,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    }
+                  ]
+                },
+                {
+                  "Type": 209,
+                  "TypeName": "VoIPLine",
+                  "ElementNumber": 2,
+                  "DataType": "SettingCollection",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": [
+                    {
+                      "Type": 210,
+                      "TypeName": "ProxyVendor",
+                      "ElementNumber": 2,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 211,
+                      "TypeName": "ProxyAddress",
+                      "ElementNumber": 2,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 212,
+                      "TypeName": "ProxyPort",
+                      "ElementNumber": 2,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 213,
+                      "TypeName": "SIPDomain",
+                      "ElementNumber": 2,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 218,
+                      "TypeName": "BIOSDomain",
+                      "ElementNumber": 2,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "802.1X",
+          "Type": 3,
+          "TypeName": "_8021X",
+          "IncludeInProfile": "No",
+          "Settings": [
+            {
+              "Type": 301,
+              "TypeName": "_8021X",
+              "ElementNumber": 0,
+              "DataType": "Setting",
+              "Value": "",
+              "IncludeInProfile": "No",
+              "Settings": [
+                {
+                  "Type": 302,
+                  "TypeName": "Interface",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 303,
+                  "TypeName": "Mode",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 304,
+                  "TypeName": "FastMethod",
+                  "ElementNumber": 0,
+                  "DataType": "Bool",
+                  "Value": false,
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 305,
+                  "TypeName": "AnonIdentity",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 306,
+                  "TypeName": "Identity",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 307,
+                  "TypeName": "IdentityPswd",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 308,
+                  "TypeName": "RootCertificate",
+                  "ElementNumber": 0,
+                  "DataType": "ByteArray",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 309,
+                  "TypeName": "ClientCertificate",
+                  "ElementNumber": 0,
+                  "DataType": "ByteArray",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "Labels",
+          "Type": 4,
+          "TypeName": "Labels",
+          "IncludeInProfile": "No",
+          "Settings": [
+            {
+              "Type": 401,
+              "TypeName": "Labels",
+              "ElementNumber": 0,
+              "DataType": "StringList",
+              "Value": "",
+              "IncludeInProfile": "No",
+              "Settings": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "c7d32fbe-936e-471a-be1c-98bfe6ff9d44",
+      "Version": "",
+      "Name": "APAC Devices",
+      "Description": "Asia Pacific Devices",
+      "Type": 1,
+      "TypeName": "Tesira",
+      "UseSageVue": false,
+      "MonitorDevices": false,
+      "Components": [
+        {
+          "Name": "Network",
+          "Type": 1,
+          "TypeName": "Network",
+          "IncludeInProfile": "Yes",
+          "Settings": [
+            {
+              "Type": 101,
+              "TypeName": "EnableTelnet",
+              "ElementNumber": 0,
+              "DataType": "Bool",
+              "Value": false,
+              "IncludeInProfile": "Yes",
+              "Settings": []
+            },
+            {
+              "Type": 102,
+              "TypeName": "EnableMulticast",
+              "ElementNumber": 0,
+              "DataType": "Bool",
+              "Value": true,
+              "IncludeInProfile": "Yes",
+              "Settings": []
+            },
+            {
+              "Type": 103,
+              "TypeName": "EnableSSH",
+              "ElementNumber": 0,
+              "DataType": "Bool",
+              "Value": false,
+              "IncludeInProfile": "Yes",
+              "Settings": []
+            },
+            {
+              "Type": 104,
+              "TypeName": "Domain",
+              "ElementNumber": 0,
+              "DataType": "String",
+              "Value": "dir.svc.accenture.com",
+              "IncludeInProfile": "Yes",
+              "Settings": []
+            },
+            {
+              "Type": 105,
+              "TypeName": "NetworkDNS",
+              "ElementNumber": 0,
+              "DataType": "Setting",
+              "Value": "",
+              "IncludeInProfile": "Yes",
+              "Settings": [
+                {
+                  "Type": 106,
+                  "TypeName": "PrimaryDNS",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "10.230.23.130",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 107,
+                  "TypeName": "SecondaryDNS",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "10.230.23.131",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "VoIP",
+          "Type": 2,
+          "TypeName": "VoIP",
+          "IncludeInProfile": "No",
+          "Settings": [
+            {
+              "Type": 201,
+              "TypeName": "VLAN",
+              "ElementNumber": 0,
+              "DataType": "Setting",
+              "Value": "",
+              "IncludeInProfile": "No",
+              "Settings": [
+                {
+                  "Type": 203,
+                  "TypeName": "VLANId",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 202,
+                  "TypeName": "VLANTagging",
+                  "ElementNumber": 0,
+                  "DataType": "Bool",
+                  "Value": false,
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                }
+              ]
+            },
+            {
+              "Type": 204,
+              "TypeName": "Network",
+              "ElementNumber": 0,
+              "DataType": "Setting",
+              "Value": "",
+              "IncludeInProfile": "No",
+              "Settings": [
+                {
+                  "Type": 205,
+                  "TypeName": "DomainName",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 206,
+                  "TypeName": "DNSPrimary",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 207,
+                  "TypeName": "DNSSecondary",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                }
+              ]
+            },
+            {
+              "Type": 208,
+              "TypeName": "VoIPLines",
+              "ElementNumber": 0,
+              "DataType": "Setting",
+              "Value": "",
+              "IncludeInProfile": "No",
+              "Settings": [
+                {
+                  "Type": 209,
+                  "TypeName": "VoIPLine",
+                  "ElementNumber": 1,
+                  "DataType": "SettingCollection",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": [
+                    {
+                      "Type": 210,
+                      "TypeName": "ProxyVendor",
+                      "ElementNumber": 1,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 211,
+                      "TypeName": "ProxyAddress",
+                      "ElementNumber": 1,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 212,
+                      "TypeName": "ProxyPort",
+                      "ElementNumber": 1,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 213,
+                      "TypeName": "SIPDomain",
+                      "ElementNumber": 1,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 218,
+                      "TypeName": "BIOSDomain",
+                      "ElementNumber": 1,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    }
+                  ]
+                },
+                {
+                  "Type": 209,
+                  "TypeName": "VoIPLine",
+                  "ElementNumber": 2,
+                  "DataType": "SettingCollection",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": [
+                    {
+                      "Type": 210,
+                      "TypeName": "ProxyVendor",
+                      "ElementNumber": 2,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 211,
+                      "TypeName": "ProxyAddress",
+                      "ElementNumber": 2,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 212,
+                      "TypeName": "ProxyPort",
+                      "ElementNumber": 2,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 213,
+                      "TypeName": "SIPDomain",
+                      "ElementNumber": 2,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    },
+                    {
+                      "Type": 218,
+                      "TypeName": "BIOSDomain",
+                      "ElementNumber": 2,
+                      "DataType": "String",
+                      "Value": "",
+                      "IncludeInProfile": "NotApplicable",
+                      "Settings": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "802.1X",
+          "Type": 3,
+          "TypeName": "_8021X",
+          "IncludeInProfile": "No",
+          "Settings": [
+            {
+              "Type": 301,
+              "TypeName": "_8021X",
+              "ElementNumber": 0,
+              "DataType": "Setting",
+              "Value": "",
+              "IncludeInProfile": "No",
+              "Settings": [
+                {
+                  "Type": 302,
+                  "TypeName": "Interface",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 303,
+                  "TypeName": "Mode",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 304,
+                  "TypeName": "FastMethod",
+                  "ElementNumber": 0,
+                  "DataType": "Bool",
+                  "Value": false,
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 305,
+                  "TypeName": "AnonIdentity",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 306,
+                  "TypeName": "Identity",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 307,
+                  "TypeName": "IdentityPswd",
+                  "ElementNumber": 0,
+                  "DataType": "String",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 308,
+                  "TypeName": "RootCertificate",
+                  "ElementNumber": 0,
+                  "DataType": "ByteArray",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                },
+                {
+                  "Type": 309,
+                  "TypeName": "ClientCertificate",
+                  "ElementNumber": 0,
+                  "DataType": "ByteArray",
+                  "Value": "",
+                  "IncludeInProfile": "NotApplicable",
+                  "Settings": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "Labels",
+          "Type": 4,
+          "TypeName": "Labels",
+          "IncludeInProfile": "No",
+          "Settings": [
+            {
+              "Type": 401,
+              "TypeName": "Labels",
+              "ElementNumber": 0,
+              "DataType": "StringList",
+              "Value": "",
+              "IncludeInProfile": "No",
+              "Settings": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

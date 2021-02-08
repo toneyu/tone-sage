@@ -20,7 +20,8 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
-    "allowJs": true
+    "allowJs": true,
+    "baseUrl": "src"
   },
   "exclude": [
     "test",
@@ -29,5 +30,6 @@
     "src/renderer.prod.js",
     "src/dist",
     ".erb/dll"
-  ]
+  ],
+  "include": ["src"]
 }
