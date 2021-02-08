@@ -1,5 +1,6 @@
 import { Box, Spinner } from '@chakra-ui/react';
 import Login from 'components/Login';
+import Modals from 'components/Modals';
 import { ConnectedRouter } from 'connected-react-router';
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -45,6 +46,7 @@ const App: React.FC = () => {
               </Switch>
             </Router>
           )}
+          <Modals />
         </Box>
       </ConnectedRouter>
     </QueryClientProvider>

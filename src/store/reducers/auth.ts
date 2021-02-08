@@ -1,7 +1,7 @@
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/es/storage';
 import { RootAction } from 'store/actions';
-import { login, setSession } from 'store/actions/auth';
+import { login, logout, setSession } from 'store/actions/auth';
 import { getType } from 'typesafe-actions';
 
 type State = {
@@ -29,6 +29,13 @@ const reducer = (state = initialState, action: RootAction): State => {
       return {
         ...state,
         sessionId: action.payload.sessionId,
+      };
+    case getType(logout):
+      return {
+        ...state,
+        username: undefined,
+        password: undefined,
+        sessionId: undefined,
       };
     default:
       return state;
