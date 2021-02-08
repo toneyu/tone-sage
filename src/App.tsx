@@ -1,39 +1,54 @@
+import { Box, Spinner } from '@chakra-ui/react';
+import Login from 'components/Login';
+import { ConnectedRouter } from 'connected-react-router';
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Box, Button, Heading, Image } from '@chakra-ui/react';
-import icon from '../assets/icon.svg';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import {
+  HashRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom';
+import history from 'store/history';
+import AdministratorRoleVerification from './components/AdministratorRoleVerification';
+import {
+  isAuthenticatedSelector,
+  isRehydratedSelector,
+} from './store/selectors/auth';
+import { useTypedSelector } from './utils/hooks';
 
-const Hello = () => {
+const queryClient = new QueryClient();
+
+const App: React.FC = () => {
+  const isAuthenticated = useTypedSelector(isAuthenticatedSelector);
+  const isRehydrated = useTypedSelector(isRehydratedSelector);
+
   return (
-    <Box>
-      <Box className="Hello">
-        <Image width="200px" alt="icon" src={icon} />
-      </Box>
-      <Heading>electron-react-boilerplate</Heading>
-      <Box className="Hello">
-        <Button type="button">
-          <span role="img" aria-label="books">
-            📚
-          </span>
-          Read our docs
-        </Button>
-        <Button type="button">
-          <span role="img" aria-label="books">
-            🙏
-          </span>
-          Donate
-        </Button>
-      </Box>
-    </Box>
+    <QueryClientProvider client={queryClient}>
+      <ConnectedRouter history={history}>
+        <Box h="100vh" w="100vw" overflow="auto">
+          {!isRehydrated ? (
+            <Spinner />
+          ) : (
+            <Router>
+              <Switch>
+                <Route path="/login">
+                  {isAuthenticated ? <Redirect to="/" /> : <Login />}
+                </Route>
+                <Route path="/">
+                  {isAuthenticated ? (
+                    <AdministratorRoleVerification />
+                  ) : (
+                    <Redirect to="/login" />
+                  )}
+                </Route>
+              </Switch>
+            </Router>
+          )}
+        </Box>
+      </ConnectedRouter>
+    </QueryClientProvider>
   );
 };
 
-export default function App() {
-  return (
-    <Router>
-      <Switch>
-        <Route path="/" component={Hello} />
-      </Switch>
-    </Router>
-  );
-}
+export default App;
