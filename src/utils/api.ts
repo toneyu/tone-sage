@@ -16,7 +16,7 @@ export const postLogin = (username: string, password: string) =>
 
 export const getDeviceProfileAuth = () => (sessionId: string) =>
   axios.get<{
-    DeviceProfile: DeviceProfile;
+    DeviceProfile: DeviceProfile[];
   }>(`${BASE_URL}/api/DeviceProfile`, {
     headers: {
       sessionId,

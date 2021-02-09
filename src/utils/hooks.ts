@@ -1,9 +1,11 @@
 import { TypedDispatch } from '@types';
-import { AxiosResponse } from 'axios';
+import { AxiosError } from 'axios';
 import { QueryKey } from 'constants/query-keys';
+import { StatusCodes } from 'http-status-codes';
 import { useQuery } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSession } from 'store/actions/auth';
+import { logout, setSession } from 'store/actions/auth';
+import { addModal } from 'store/actions/modals';
 import history from 'store/history';
 import { RootState } from 'store/reducers';
 import {
@@ -12,6 +14,7 @@ import {
   usernameSelector,
 } from 'store/selectors/auth';
 import { postLogin } from 'utils/api';
+import { Optional } from 'utility-types';
 
 export const useTypedDispatch: () => TypedDispatch = useDispatch;
 
@@ -22,24 +25,88 @@ export const useTypedSelector: <TSelected = unknown>(
 
 export const useSageQuery = <R>(
   queryKey: QueryKey,
-  apiAuth: (sessionId: string) => AxiosResponse<R>
+  apiAuth: (sessionId: string) => Promise<R>
 ) => {
   const dispatch = useTypedDispatch();
   let sessionId = useSelector(sessionIdSelector);
   const username = useSelector(usernameSelector);
   const password = useSelector(passwordSelector);
 
-  return useQuery(queryKey, async () => {
-    if (sessionId !== undefined) {
-      return apiAuth(sessionId);
-    }
+  const query = useQuery(queryKey, async () => {
     if (username !== undefined && password !== undefined) {
-      const postLoginRes = await postLogin(username, password);
-      sessionId = postLoginRes.data.LoginId;
-      dispatch(setSession(sessionId));
-      return apiAuth(sessionId);
+      if (sessionId === undefined) {
+        const postLoginRes = await postLogin(username, password);
+        sessionId = postLoginRes.data.LoginId;
+        dispatch(setSession(sessionId));
+      }
+
+      try {
+        return apiAuth(sessionId);
+      } catch (error) {
+        // FIXME: If status code is not unauthorized if the session key is invalid/expired find out which status code it is.
+        if (error?.response?.status === StatusCodes.UNAUTHORIZED) {
+          const postLoginRes = await postLogin(username, password);
+          sessionId = postLoginRes.data.LoginId;
+          dispatch(setSession(sessionId));
+          return apiAuth(sessionId);
+        }
+        throw error;
+      }
+    } else {
+      history.push('/login');
     }
-    history.push('/login');
+
     return undefined;
   });
+
+  const error = query.error as Optional<AxiosError>;
+
+  if (error?.response) {
+    // Request made and server responded
+    console.log(error.response.data);
+    console.log(error.response.status);
+    console.log(error.response.headers);
+    if (error.response.status === StatusCodes.UNAUTHORIZED) {
+      history.push('/login');
+    } else {
+      dispatch(
+        addModal(
+          'Error response received from SageVue API',
+          `${error.response.status}: ${error.response.data}`,
+          [
+            {
+              label: 'Try Again',
+              onClick: () => {
+                // noinspection JSIgnoredPromiseFromCall
+                query.refetch();
+              },
+            },
+            {
+              label: 'Logout',
+              onClick: logout,
+            },
+          ]
+        )
+      );
+    }
+  } else if (error.request) {
+    // The request was made but no response was received
+    dispatch(
+      addModal('Unable to connect to SageVue API', error.message, [
+        {
+          label: 'Try Again',
+          onClick: () => {
+            // noinspection JSIgnoredPromiseFromCall
+            query.refetch();
+          },
+        },
+        {
+          label: 'Logout',
+          onClick: logout,
+        },
+      ])
+    );
+  }
+
+  return query;
 };
