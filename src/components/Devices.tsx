@@ -20,10 +20,12 @@ const Devices: React.FC<{ deviceName: string }> = ({ deviceName }) => {
 
   return (
     <Flex overflow="auto" dir="column">
-      {isLoading ? (
+      {getDeviceProfileQuery.error ? (
+        `Error: ${JSON.stringify(getDeviceProfileQuery.error)}`
+      ) : isLoading ? (
         <Spinner />
       ) : device ? (
-        <Flex>
+        <Flex flexDir="column">
           Description: {device.Description} <Divider />
           Active: {network !== undefined ? 'On' : 'Off'} <Divider />
           {network && (

@@ -1,6 +1,6 @@
 import { all } from 'typed-redux-saga';
-import login from 'store/sagas/login';
+import auth from 'store/sagas/auth';
 
 export default function* rootSaga() {
-  yield* all([login()]);
+  yield* all([auth()]);
 }

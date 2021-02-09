@@ -6,7 +6,6 @@ import { useQuery } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, setSession } from 'store/actions/auth';
 import { addModal } from 'store/actions/modals';
-import history from 'store/history';
 import { RootState } from 'store/reducers';
 import {
   passwordSelector,
@@ -27,11 +26,11 @@ export const useSageQuery = <R>(
   queryKey: QueryKey,
   apiAuth: (sessionId: string) => Promise<R>
 ) => {
+  let res: R | undefined;
   const dispatch = useTypedDispatch();
   let sessionId = useSelector(sessionIdSelector);
   const username = useSelector(usernameSelector);
   const password = useSelector(passwordSelector);
-
   const query = useQuery(queryKey, async () => {
     if (username !== undefined && password !== undefined) {
       if (sessionId === undefined) {
@@ -41,22 +40,23 @@ export const useSageQuery = <R>(
       }
 
       try {
-        return apiAuth(sessionId);
+        res = await apiAuth(sessionId);
       } catch (error) {
+        console.log(error);
         // FIXME: If status code is not unauthorized if the session key is invalid/expired find out which status code it is.
         if (error?.response?.status === StatusCodes.UNAUTHORIZED) {
           const postLoginRes = await postLogin(username, password);
           sessionId = postLoginRes.data.LoginId;
           dispatch(setSession(sessionId));
-          return apiAuth(sessionId);
+          res = await apiAuth(sessionId);
         }
         throw error;
       }
     } else {
-      history.push('/login');
+      dispatch(logout());
     }
 
-    return undefined;
+    return res;
   });
 
   const error = query.error as Optional<AxiosError>;
@@ -67,7 +67,7 @@ export const useSageQuery = <R>(
     console.log(error.response.status);
     console.log(error.response.headers);
     if (error.response.status === StatusCodes.UNAUTHORIZED) {
-      history.push('/login');
+      dispatch(logout());
     } else {
       dispatch(
         addModal(
@@ -89,7 +89,7 @@ export const useSageQuery = <R>(
         )
       );
     }
-  } else if (error.request) {
+  } else if (error?.request) {
     // The request was made but no response was received
     dispatch(
       addModal('Unable to connect to SageVue API', error.message, [
