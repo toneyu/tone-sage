@@ -31,33 +31,39 @@ export const useSageQuery = <R>(
   let sessionId = useSelector(sessionIdSelector);
   const username = useSelector(usernameSelector);
   const password = useSelector(passwordSelector);
-  const query = useQuery(queryKey, async () => {
-    if (username !== undefined && password !== undefined) {
-      if (sessionId === undefined) {
-        const postLoginRes = await postLogin(username, password);
-        sessionId = postLoginRes.data.LoginId;
-        dispatch(setSession(sessionId));
-      }
-
-      try {
-        res = await apiAuth(sessionId);
-      } catch (error) {
-        console.log(error);
-        // FIXME: If status code is not unauthorized if the session key is invalid/expired find out which status code it is.
-        if (error?.response?.status === StatusCodes.UNAUTHORIZED) {
+  const query = useQuery(
+    queryKey,
+    async () => {
+      if (username !== undefined && password !== undefined) {
+        if (sessionId === undefined) {
           const postLoginRes = await postLogin(username, password);
           sessionId = postLoginRes.data.LoginId;
           dispatch(setSession(sessionId));
-          res = await apiAuth(sessionId);
         }
-        throw error;
-      }
-    } else {
-      dispatch(logout());
-    }
 
-    return res;
-  });
+        try {
+          res = await apiAuth(sessionId);
+        } catch (error) {
+          console.log(error);
+          // FIXME: If status code is not unauthorized if the session key is invalid/expired find out which status code it is.
+          if (error?.response?.status === StatusCodes.UNAUTHORIZED) {
+            const postLoginRes = await postLogin(username, password);
+            sessionId = postLoginRes.data.LoginId;
+            dispatch(setSession(sessionId));
+            res = await apiAuth(sessionId);
+          }
+          throw error;
+        }
+      } else {
+        dispatch(logout());
+      }
+
+      return res;
+    },
+    {
+      retry: false,
+    }
+  );
 
   const error = query.error as Optional<AxiosError>;
 
