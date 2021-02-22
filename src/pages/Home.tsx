@@ -1,55 +1,41 @@
-import { Button, Flex, Spinner, Text } from '@chakra-ui/react';
+import { Button, Flex, Spinner, useToast } from '@chakra-ui/react';
 import AdministratorRoleVerification from 'components/AdministratorRoleVerification';
+import Device from 'components/Device';
+import { QueryKey } from 'constants/query-keys';
 import React from 'react';
 import { logout } from 'store/actions/auth';
-import { addModal } from 'store/actions/modals';
-import { putRebootAuth } from 'utils/api';
-import { useSageMutation, useTypedDispatch } from 'utils/hooks';
+import { getDevicesAuth } from 'utils/api';
+import { useSageQuery, useTypedDispatch } from 'utils/hooks';
 
 const Home = () => {
   const dispatch = useTypedDispatch();
-  const putRebootMutation = useSageMutation(putRebootAuth('04112911'), {
-    onSuccess: (data) => {
-      if (!data.data.Result) {
-        dispatch(
-          addModal('Error ocurred when trying to reboot', data.data.Error, [
-            {
-              label: 'Retry',
-              onClick: () => {
-                putRebootMutation.mutate();
-              },
-            },
-            {
-              label: 'Relogin',
-              onClick: () => {
-                dispatch(logout());
-              },
-            },
-          ]),
-        );
-
-        throw Error(data.data.Error);
-      }
-    },
-  });
+  const getDevicesQuery = useSageQuery(QueryKey.DEVICES, getDevicesAuth());
+  const toast = useToast();
 
   return (
     <Flex overflow="auto" flexDir="column" align="start">
-      {putRebootMutation.isError && <Text color="red">{putRebootMutation.error?.message}</Text>}
-      {putRebootMutation.isLoading && <Spinner />}
-      {putRebootMutation.isSuccess && (
-        <Text>
-          Rebooting... Please wait until device is rebooted on the website then refresh this app.
-        </Text>
-      )}
-      <Button
-        color="red"
-        disabled={putRebootMutation.isLoading}
-        onClick={() => putRebootMutation.mutate()}
-      >
-        Reboot
-      </Button>
       <Button onClick={() => dispatch(logout())}>Logout</Button>
+      <Button
+        onClick={async () => {
+          await getDevicesQuery.refetch();
+
+          toast({
+            title: 'Refreshed',
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+          });
+        }}
+      >
+        Refresh
+      </Button>
+      {getDevicesQuery.isLoading ? (
+        <Spinner />
+      ) : (
+        getDevicesQuery.data?.data.TesiraDevices.map((device) => (
+          <Device key={device.SerialNumber} device={device} />
+        ))
+      )}
       <AdministratorRoleVerification />
     </Flex>
   );

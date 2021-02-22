@@ -1,4 +1,4 @@
-import { Text, Divider, Flex, Spinner, Button } from '@chakra-ui/react';
+import { Text, Divider, Flex, Spinner, Button, useToast } from '@chakra-ui/react';
 import React from 'react';
 import { getDeviceProfileAuth } from '../utils/api';
 import { useSageQuery } from '../utils/hooks';
@@ -7,6 +7,7 @@ import { QueryKey } from '../constants/query-keys';
 const Devices: React.FC<{ deviceName: string }> = ({ deviceName }) => {
   const getDeviceProfileQuery = useSageQuery(QueryKey.DEVICE_PROFILE, getDeviceProfileAuth());
   const { isLoading, data } = getDeviceProfileQuery;
+  const toast = useToast();
 
   const device = data?.data.DeviceProfile.find(
     (deviceProfile) => deviceProfile.Name === deviceName,
@@ -15,7 +16,20 @@ const Devices: React.FC<{ deviceName: string }> = ({ deviceName }) => {
 
   return (
     <Flex overflow="auto" dir="column">
-      <Button onClick={() => getDeviceProfileQuery.refetch()}>Refresh</Button>
+      <Button
+        onClick={async () => {
+          await getDeviceProfileQuery.refetch();
+
+          toast({
+            title: 'Refreshed',
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+          });
+        }}
+      >
+        Refresh
+      </Button>
       {getDeviceProfileQuery.error ? (
         `Error: ${JSON.stringify(getDeviceProfileQuery.error)}`
       ) : isLoading ? (

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { DeviceProfile } from '../@types/models';
+import { DeviceProfile, Devices } from '../@types/models';
 
 export const BASE_URL = 'https://stgrs1508.dir.svc.accenture.com/biampsagevue';
 
@@ -44,3 +44,10 @@ export const putRebootAuth = (serialNumber: string) => (
       },
     },
   );
+
+export const getDevicesAuth = () => (sessionId: string) =>
+  axios.get<Devices>(`${BASE_URL}/api/Devices`, {
+    headers: {
+      sessionId,
+    },
+  });

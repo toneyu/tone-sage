@@ -33,3 +33,34 @@ export enum SettingType {
   EnableMulticast = 102,
   EnableSSH = 103,
 }
+
+export interface TesiraDevice {
+  Model: string;
+  ModelDescription: string;
+  SystemDescription: string;
+  FirmwareVersion: string;
+  OccupiedStatus: string;
+  AssetGroupId: string;
+  IsControlled: boolean;
+  SystemId: string;
+  SerialNumber: string;
+  HostName: string;
+  Description: string;
+  IsProtected: boolean;
+  Faults: unknown[];
+  Status: number;
+  Labels: unknown[];
+}
+
+export interface Devices {
+  TesiraDevices: TesiraDevice[];
+  TesiraErrors: string[];
+  DevioDevices: unknown[];
+  DevioErrors: string[];
+  AtomDevices: unknown[];
+  AtomErrors: string[];
+  DynasoundDevices: unknown[];
+  DynasoundErrors: string[];
+  QtProDevices: unknown[];
+  QtProErrors: string[];
+}

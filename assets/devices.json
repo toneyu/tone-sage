@@ -1,0 +1,33 @@
+{
+  "TesiraDevices": [
+    {
+      "Model": "FORTE_CI",
+      "ModelDescription": "TesiraFORTÉ AVB CI",
+      "SystemDescription": "Accenture Cyviz",
+      "FirmwareVersion": "3.16.1.4",
+      "OccupiedStatus": "Reboot",
+      "AssetGroupId": "88ebd93f-4a08-4185-8854-ef92423e18a4",
+      "IsControlled": false,
+      "SystemId": "04112911",
+      "SerialNumber": "04112911",
+      "HostName": "TesiraForte04112911",
+      "Description": "Chicago-161NClark-36W80-AVB",
+      "IsProtected": false,
+      "Faults": [],
+      "Status": 0,
+      "Labels": []
+    }
+  ],
+  "TesiraErrors": [
+    "Device discovery failed to connect to the device with IP address '10.12.130.107'.",
+    "Device discovery failed to connect to the device with IP address '10.12.96.233'."
+  ],
+  "DevioDevices": [],
+  "DevioErrors": ["Device Discovery is not enabled."],
+  "AtomDevices": [],
+  "AtomErrors": ["Atom discovery is not enabled."],
+  "DynasoundDevices": [],
+  "DynasoundErrors": ["Dynasound Device Discovery is not enabled."],
+  "QtProDevices": [],
+  "QtProErrors": ["QtPro Device Discovery is not enabled."]
+}
