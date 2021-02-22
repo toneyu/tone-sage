@@ -6,12 +6,11 @@ export const login = createAction(
     username,
     password,
     sessionId,
-  })
+  }),
 )();
 
-export const setSession = createAction(
-  'auth/SET_SESSION',
-  (sessionId: string) => ({ sessionId })
-)();
+export const setSession = createAction('auth/SET_SESSION', (sessionId: string) => ({
+  sessionId,
+}))();
 
 export const logout = createAction('auth/LOGOUT')();

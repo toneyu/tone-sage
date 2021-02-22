@@ -7,5 +7,5 @@ export const modalsByIdSelector = (state: RootState) => state.modals.modalsById;
 
 export const modalsSelector = createSelector(
   [modalIdsSelector, modalsByIdSelector],
-  (modalIds, modalsById) => modalIds.map((modalId) => modalsById[modalId])
+  (modalIds, modalsById) => modalIds.map((modalId) => modalsById[modalId]),
 );

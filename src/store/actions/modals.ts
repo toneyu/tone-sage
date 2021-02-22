@@ -13,13 +13,13 @@ export const addModal = createAction(
     id?: string,
     closeOnEsc = true,
     closeOnOverlayClick = true,
-    closeOnSelection = true
+    closeOnSelection = true,
   ) => {
     const modalButtonsWithKeys: ActionButton[] = modalButtons.map(
       (actionButton) =>
         (actionButton.key === undefined
           ? { ...actionButton, key: shortid() }
-          : actionButton) as ActionButton
+          : actionButton) as ActionButton,
     );
     return {
       title,
@@ -30,10 +30,7 @@ export const addModal = createAction(
       closeOnOverlayClick,
       closeOnSelection,
     };
-  }
+  },
 )();
 
-export const removeModal = createAction(
-  'modals/REMOVE_MODAL',
-  (id: string) => ({ id })
-)();
+export const removeModal = createAction('modals/REMOVE_MODAL', (id: string) => ({ id }))();

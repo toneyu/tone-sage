@@ -9,5 +9,4 @@ export const passwordSelector = (state: RootState) => state.auth.password;
 export const isAuthenticatedSelector = (state: RootState) =>
   state.auth.username !== undefined && state.auth.password !== undefined;
 
-export const isRehydratedSelector = (state: RootState) =>
-  state.auth._persist.rehydrated;
+export const isRehydratedSelector = (state: RootState) => state.auth._persist.rehydrated;

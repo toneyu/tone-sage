@@ -2,4 +2,5 @@
 export enum QueryKey {
   DEVICE_PROFILE = 'DEVICE_PROFILE',
   SESSION_KEY = 'SESSION_KEY',
+  REBOOT = 'REBOOT_KEY',
 }

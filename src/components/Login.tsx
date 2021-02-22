@@ -63,10 +63,7 @@ const Login: React.FC = () => {
       <Flex direction="column">
         <FormControl isRequired>
           <FormLabel>Username</FormLabel>
-          <Input
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+          <Input value={username} onChange={(e) => setUsername(e.target.value)} />
         </FormControl>
         <FormControl isRequired>
           <FormLabel>Password</FormLabel>
@@ -76,9 +73,7 @@ const Login: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </FormControl>
-        <Checkbox onChange={(e) => setShowPassword(e.target.checked)}>
-          Show Password
-        </Checkbox>
+        <Checkbox onChange={(e) => setShowPassword(e.target.checked)}>Show Password</Checkbox>
         <Button type="submit">Login</Button>
       </Flex>
       {isLoading && <Spinner />}

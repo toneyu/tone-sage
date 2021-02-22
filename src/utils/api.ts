@@ -22,3 +22,25 @@ export const getDeviceProfileAuth = () => (sessionId: string) =>
       sessionId,
     },
   });
+
+export const putRebootAuth = (serialNumber: string) => (
+  sessionId: string,
+  _: string,
+  password: string,
+) =>
+  axios.put<{
+    Result: boolean;
+    Error?: string;
+  }>(
+    `${BASE_URL}/api/Devices/${serialNumber}/Reboot`,
+    {
+      credentials: {
+        password,
+      },
+    },
+    {
+      headers: {
+        sessionId,
+      },
+    },
+  );

@@ -2,20 +2,12 @@ import { Box, Spinner } from '@chakra-ui/react';
 import Login from 'components/Login';
 import Modals from 'components/Modals';
 import { ConnectedRouter } from 'connected-react-router';
+import Home from 'pages/Home';
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import {
-  HashRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from 'react-router-dom';
+import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import history from 'store/history';
-import AdministratorRoleVerification from './components/AdministratorRoleVerification';
-import {
-  isAuthenticatedSelector,
-  isRehydratedSelector,
-} from './store/selectors/auth';
+import { isAuthenticatedSelector, isRehydratedSelector } from './store/selectors/auth';
 import { useTypedSelector } from './utils/hooks';
 
 const queryClient = new QueryClient();
@@ -33,16 +25,8 @@ const App: React.FC = () => {
           ) : (
             <Router>
               <Switch>
-                <Route path="/login">
-                  {isAuthenticated ? <Redirect to="/" /> : <Login />}
-                </Route>
-                <Route path="/">
-                  {isAuthenticated ? (
-                    <AdministratorRoleVerification />
-                  ) : (
-                    <Redirect to="/login" />
-                  )}
-                </Route>
+                <Route path="/login">{isAuthenticated ? <Redirect to="/" /> : <Login />}</Route>
+                <Route path="/">{isAuthenticated ? <Home /> : <Redirect to="/login" />}</Route>
               </Switch>
             </Router>
           )}

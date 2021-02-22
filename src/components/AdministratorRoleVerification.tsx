@@ -4,20 +4,14 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
-  Button,
   Flex,
 } from '@chakra-ui/react';
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import Devices from './Devices';
-import { logout } from '../store/actions/auth';
 
 const AdministratorRoleVerification = () => {
-  const dispatch = useDispatch();
-
   return (
-    <Flex overflow="auto" dir="column">
-      <Button onClick={() => dispatch(logout())}>Logout</Button>
+    <Flex overflow="auto" flexDir="column">
       <Accordion defaultIndex={[0, 1, 2]} allowMultiple>
         <AccordionItem>
           <AccordionButton>

@@ -4,7 +4,7 @@ import React from 'react';
 export type ActionButton = {
   key: string;
   label: string;
-  onClick: (dispatch: TypedDispatch, id: string) => void;
+  onClick?: (dispatch: TypedDispatch, id: string) => void;
 };
 
 export type ModalData = {

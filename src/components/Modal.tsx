@@ -16,10 +16,7 @@ const Modal: React.FunctionComponent<{
   modal: ModalData;
   onModalClose: (modalId: string) => void;
 }> = ({ modal, onModalClose }) => {
-  const closeModal = useCallback(() => onModalClose(modal.id), [
-    modal.id,
-    onModalClose,
-  ]);
+  const closeModal = useCallback(() => onModalClose(modal.id), [modal.id, onModalClose]);
 
   return (
     <ChakraModal

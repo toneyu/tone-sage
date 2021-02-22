@@ -25,10 +25,7 @@ const DeviceProfile: React.FC = () => {
         </FormControl>
         <FormControl>
           <FormLabel>Description</FormLabel>
-          <Input
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
+          <Input value={description} onChange={(e) => setDescription(e.target.value)} />
         </FormControl>
       </Flex>
       <Tabs>

@@ -13,12 +13,18 @@ const ModalButton: React.FunctionComponent<{
 }> = ({ actionButton, modalId, closeOnSelection }) => {
   const dispatch: Dispatch<RootAction> = useDispatch();
   const handleClick = useCallback(() => {
-    actionButton.onClick(dispatch, modalId);
+    if (actionButton.onClick !== undefined) {
+      actionButton.onClick(dispatch, modalId);
+    }
     if (closeOnSelection) {
       dispatch(removeModal(modalId));
     }
   }, [actionButton, dispatch, modalId, closeOnSelection]);
-  return <Button primary onClick={handleClick} label={actionButton.label} />;
+  return (
+    <Button primary onClick={handleClick}>
+      {actionButton.label}
+    </Button>
+  );
 };
 
 export default ModalButton;
