@@ -1,5 +1,6 @@
 import {
   Flex,
+  HStack,
   Modal as ChakraModal,
   ModalBody,
   ModalCloseButton,
@@ -7,6 +8,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Spacer,
 } from '@chakra-ui/react';
 import React, { useCallback } from 'react';
 import { ModalData } from '../@types/modal';
@@ -37,7 +39,7 @@ const Modal: React.FunctionComponent<{
         <ModalBody>{modal.description}</ModalBody>
 
         <ModalFooter>
-          <Flex direction="row" margin={{ top: 'small' }} gap="small">
+          <HStack>
             {modal.modalButtons.map((actionButton) => (
               <ModalButton
                 actionButton={actionButton}
@@ -46,7 +48,7 @@ const Modal: React.FunctionComponent<{
                 closeOnSelection={modal.closeOnSelection}
               />
             ))}
-          </Flex>
+          </HStack>
         </ModalFooter>
       </ModalContent>
     </ChakraModal>
