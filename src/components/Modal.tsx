@@ -1,5 +1,4 @@
 import {
-  Flex,
   HStack,
   Modal as ChakraModal,
   ModalBody,
@@ -8,7 +7,6 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Spacer,
 } from '@chakra-ui/react';
 import React, { useCallback } from 'react';
 import { ModalData } from '../@types/modal';
