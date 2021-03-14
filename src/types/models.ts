@@ -7,10 +7,10 @@ export type DeviceProfile = {
   TypeName: string;
   UseSageVue: boolean;
   MonitorDevices: boolean;
-  Components: Components[];
+  Components: Component[];
 };
 
-export type Components = {
+export type Component = {
   Name: string;
   Type: number;
   TypeName: string;
@@ -32,6 +32,10 @@ export enum SettingType {
   EnableTelnet = 101,
   EnableMulticast = 102,
   EnableSSH = 103,
+  Domain = 104,
+  NetworkDNS = 105,
+  PrimaryDNS = 106,
+  SecondaryDNS = 107,
 }
 
 export interface TesiraDevice {
@@ -63,4 +67,9 @@ export interface Devices {
   DynasoundErrors: string[];
   QtProDevices: unknown[];
   QtProErrors: string[];
+}
+
+export enum IncludeInProfileType {
+  Yes = 'Yes',
+  No = 'No',
 }

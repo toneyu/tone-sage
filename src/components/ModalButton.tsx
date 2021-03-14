@@ -20,11 +20,7 @@ const ModalButton: React.FunctionComponent<{
       dispatch(removeModal(modalId));
     }
   }, [actionButton, dispatch, modalId, closeOnSelection]);
-  return (
-    <Button primary onClick={handleClick}>
-      {actionButton.label}
-    </Button>
-  );
+  return <Button onClick={handleClick}>{actionButton.label}</Button>;
 };
 
 export default ModalButton;

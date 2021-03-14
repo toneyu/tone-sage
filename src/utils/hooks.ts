@@ -1,4 +1,4 @@
-import { TypedDispatch } from '@types';
+import { TypedDispatch } from 'types';
 import { AxiosError } from 'axios';
 import { QueryKey } from 'constants/query-keys';
 import { StatusCodes } from 'http-status-codes';

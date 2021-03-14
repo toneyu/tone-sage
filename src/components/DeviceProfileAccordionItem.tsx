@@ -1,4 +1,4 @@
-import { DeleteIcon } from '@chakra-ui/icons';
+import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
 import {
   AccordionButton,
   AccordionIcon,
@@ -10,14 +10,17 @@ import {
 import { QueryKey } from 'constants/query-keys';
 import React from 'react';
 import { useQueryClient } from 'react-query';
+import { addModal } from 'store/actions/modals';
 import { DeviceProfile as DeviceProfileType } from 'types/models';
 import { deleteDeviceProfilesAuth } from 'utils/api';
-import { useSageMutation } from 'utils/hooks';
+import { useSageMutation, useTypedDispatch } from 'utils/hooks';
 import DeviceProfile from './DeviceProfile';
+import EditDeviceProfile from './EditDeviceProfile';
 
 const DeviceProfileAccordionItem: React.FC<{ deviceProfile: DeviceProfileType }> = ({
   deviceProfile,
 }) => {
+  const dispatch = useTypedDispatch();
   const queryClient = useQueryClient();
   const deleteDeviceProfileMutation = useSageMutation(deleteDeviceProfilesAuth(deviceProfile.Id), {
     onSuccess: () => {
@@ -38,6 +41,32 @@ const DeviceProfileAccordionItem: React.FC<{ deviceProfile: DeviceProfileType }>
           onClick={() => deleteDeviceProfileMutation.mutate()}
         >
           <DeleteIcon />
+        </Button>
+
+        <Button
+          onClick={() =>
+            dispatch(
+              addModal(
+                `Edit device ${deviceProfile.Name}`,
+                <EditDeviceProfile deviceProfile={deviceProfile} />,
+                [
+                  {
+                    label: 'Save (TODO WIP)',
+                    onClick: () => {
+                      // noinspection JSIgnoredPromiseFromCall
+                      // query.refetch();
+                    },
+                  },
+                  {
+                    label: 'Cancel',
+                    onClick: () => {},
+                  },
+                ],
+              ),
+            )
+          }
+        >
+          <EditIcon />
         </Button>
       </Flex>
       <AccordionPanel pb={4}>
