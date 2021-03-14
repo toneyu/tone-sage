@@ -1,4 +1,4 @@
-import { Button, Flex, Spinner, useToast } from '@chakra-ui/react';
+import { Button, HStack, Spinner, useToast } from '@chakra-ui/react';
 import AdministratorRoleVerification from 'components/AdministratorRoleVerification';
 import Device from 'components/Device';
 import { QueryKey } from 'constants/query-keys';
@@ -13,8 +13,10 @@ const Home = () => {
   const toast = useToast();
 
   return (
-    <Flex overflow="auto" flexDir="column" align="start">
-      <Button onClick={() => dispatch(logout())}>Logout</Button>
+    <HStack overflow="auto" flexDirection="column" align="stretch">
+      <Button backgroundColor="tomato" onClick={() => dispatch(logout())}>
+        Logout
+      </Button>
       <Button
         onClick={async () => {
           await getDevicesQuery.refetch();
@@ -37,7 +39,7 @@ const Home = () => {
         ))
       )}
       <AdministratorRoleVerification />
-    </Flex>
+    </HStack>
   );
 };
 

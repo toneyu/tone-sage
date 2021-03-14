@@ -1,7 +1,7 @@
 import shortid from 'shortid';
 import { createAction } from 'typesafe-actions';
 import { Optional } from 'utility-types';
-import type { ActionButton } from '../../@types/modal';
+import type { ActionButton } from 'types/modal';
 
 // TODO: Consider a wrapper function that takes in a callback with id as its parameter
 export const addModal = createAction(

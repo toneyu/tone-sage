@@ -1,7 +1,7 @@
 import { RootAction } from 'store/actions';
 import { addModal, removeModal } from 'store/actions/modals';
 import { getType } from 'typesafe-actions';
-import type { ModalData } from '../../@types/modal';
+import type { ModalData } from 'types/modal';
 
 export type State = {
   modalsById: { [modalId: string]: ModalData };
@@ -40,9 +40,7 @@ const reducer = (state: State = initialState, action: RootAction): State => {
       return {
         ...state,
         modalsById: newModalsById,
-        modalIds: state.modalIds.filter(
-          (modalId) => modalId !== action.payload.id
-        ),
+        modalIds: state.modalIds.filter((modalId) => modalId !== action.payload.id),
       };
     }
 

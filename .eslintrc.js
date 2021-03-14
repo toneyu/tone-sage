@@ -23,6 +23,7 @@ module.exports = {
     'no-shadow': 'off',
     'react/jsx-curly-newline': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'react/react-in-jsx-scope': 'off',
   },
   parserOptions: {
     ecmaVersion: 2020,

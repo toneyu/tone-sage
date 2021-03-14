@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
 import { removeModal } from 'store/actions/modals';
-import { ActionButton as ActionButtonType } from '../@types/modal';
+import { ActionButton as ActionButtonType } from 'types/modal';
 import { RootAction } from '../store/actions';
 
 const ModalButton: React.FunctionComponent<{

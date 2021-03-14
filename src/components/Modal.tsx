@@ -9,7 +9,7 @@ import {
   ModalOverlay,
 } from '@chakra-ui/react';
 import React, { useCallback } from 'react';
-import { ModalData } from '../@types/modal';
+import { ModalData } from 'types/modal';
 import ModalButton from './ModalButton';
 
 const Modal: React.FunctionComponent<{

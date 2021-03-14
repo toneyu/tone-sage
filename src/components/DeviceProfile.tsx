@@ -1,56 +1,80 @@
-import React, { useState } from 'react';
-import {
-  Flex,
-  FormControl,
-  FormLabel,
-  Input,
-  Switch,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-} from '@chakra-ui/react';
+import { Text, Divider, Flex, Spinner, Button, useToast } from '@chakra-ui/react';
+import React from 'react';
+import { getDeviceProfileAuth } from '../utils/api';
+import { useSageQuery } from '../utils/hooks';
+import { QueryKey } from '../constants/query-keys';
 
-const DeviceProfile: React.FC = () => {
-  const [name, setName] = useState('AMR Devices');
-  const [description, setDescription] = useState('Americas Devices');
+const DeviceProfile: React.FC<{ deviceName: string }> = ({ deviceName }) => {
+  const getDeviceProfileQuery = useSageQuery(QueryKey.DEVICE_PROFILE, getDeviceProfileAuth());
+  const { isLoading, data } = getDeviceProfileQuery;
+  const toast = useToast();
+
+  const device = data?.data.DeviceProfile.find(
+    (deviceProfile) => deviceProfile.Name === deviceName,
+  );
+  const network = device?.Components?.find((component) => component.TypeName === 'Network');
 
   return (
-    <Flex direction="column">
-      <Flex direction="row">
-        <FormControl isRequired>
-          <FormLabel>Name</FormLabel>
-          <Input value={name} onChange={(e) => setName(e.target.value)} />
-        </FormControl>
-        <FormControl>
-          <FormLabel>Description</FormLabel>
-          <Input value={description} onChange={(e) => setDescription(e.target.value)} />
-        </FormControl>
-      </Flex>
-      <Tabs>
-        <TabList>
-          <Tab>Network</Tab>
-          <Tab>VoIP</Tab>
-          <Tab>802.1X</Tab>
-          <Tab>Labels</Tab>
-        </TabList>
+    <Flex overflow="auto" dir="column">
+      <Button
+        onClick={async () => {
+          await getDeviceProfileQuery.refetch();
 
-        <TabPanels>
-          <TabPanel>
-            <Flex>
-              <FormControl>
-                <FormLabel>Active</FormLabel>
-                <Flex direction="row">
-                  <FormLabel>Off</FormLabel>
-                  <Switch id="email-alerts" />
-                  <FormLabel>On</FormLabel>
-                </Flex>
-              </FormControl>
-            </Flex>
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
+          toast({
+            title: 'Refreshed',
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+          });
+        }}
+      >
+        Refresh
+      </Button>
+      {getDeviceProfileQuery.error ? (
+        `Error: ${JSON.stringify(getDeviceProfileQuery.error)}`
+      ) : isLoading ? (
+        <Spinner />
+      ) : device ? (
+        <Flex flexDir="column">
+          Description: {device.Description} <Divider />
+          Active: {network !== undefined ? 'On' : 'Off'} <Divider />
+          {network && (
+            <>
+              Enable Telnet:{' '}
+              {network.Settings.find((component) => component.TypeName === 'EnableTelnet')?.Value
+                ? 'On'
+                : 'Off'}
+              <Divider />
+              Enable Multicast:{' '}
+              {network.Settings.find((component) => component.TypeName === 'EnableMulticast')?.Value
+                ? 'On'
+                : 'Off'}
+              <Divider />
+              Enable SSH:{' '}
+              {network.Settings.find((component) => component.TypeName === 'EnableSSH')?.Value
+                ? 'On'
+                : 'Off'}
+              <Divider />
+              Domain:{' '}
+              {network.Settings.find((component) => component.TypeName === 'Domain')?.Value ??
+                'N/A'}
+              <Divider />
+              Primary DNS:{' '}
+              {network.Settings.find(
+                (component) => component.TypeName === 'NetworkDNS',
+              )?.Settings.find((setting) => setting.TypeName === 'PrimaryDNS')?.Value ?? 'N/A'}
+              <Divider />
+              Secondary DNS:{' '}
+              {network.Settings.find(
+                (component) => component.TypeName === 'NetworkDNS',
+              )?.Settings.find((setting) => setting.TypeName === 'SecondaryDNS')?.Value ?? 'N/A'}
+              <Divider />
+            </>
+          )}
+        </Flex>
+      ) : (
+        <Text>Missing {deviceName} in API response</Text>
+      )}
     </Flex>
   );
 };

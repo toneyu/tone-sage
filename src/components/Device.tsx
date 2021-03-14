@@ -4,7 +4,7 @@ import { logout } from 'store/actions/auth';
 import { addModal } from 'store/actions/modals';
 import { putRebootAuth } from 'utils/api';
 import { useSageMutation, useTypedDispatch } from 'utils/hooks';
-import { TesiraDevice } from '../@types/models';
+import { TesiraDevice } from 'types/models';
 
 const Device: React.FC<{ device: TesiraDevice }> = ({ device }) => {
   const dispatch = useTypedDispatch();

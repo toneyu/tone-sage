@@ -1,47 +1,34 @@
-import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Flex,
-} from '@chakra-ui/react';
+import { Accordion, Button, Flex, useToast } from '@chakra-ui/react';
+import { QueryKey } from 'constants/query-keys';
 import React from 'react';
-import Devices from './Devices';
+import { getDeviceProfileAuth } from 'utils/api';
+import { useSageQuery } from 'utils/hooks';
+import DeviceProfileAccordionItem from './DeviceProfileAccordionItem';
 
 const AdministratorRoleVerification = () => {
+  const getDeviceProfileQuery = useSageQuery(QueryKey.DEVICE_PROFILE, getDeviceProfileAuth());
+  const deviceProfiles = getDeviceProfileQuery.data?.data.DeviceProfile;
+  const toast = useToast();
   return (
     <Flex overflow="auto" flexDir="column">
-      <Accordion defaultIndex={[0, 1, 2]} allowMultiple>
-        <AccordionItem>
-          <AccordionButton>
-            <Flex>AMR Devices</Flex>
-            <AccordionIcon />
-          </AccordionButton>
-          <AccordionPanel pb={4}>
-            <Devices deviceName="AMR Devices" />
-          </AccordionPanel>
-        </AccordionItem>
+      <Button
+        onClick={async () => {
+          await getDeviceProfileQuery.refetch();
 
-        <AccordionItem>
-          <AccordionButton>
-            <Flex>EMEA Devices</Flex>
-            <AccordionIcon />
-          </AccordionButton>
-          <AccordionPanel pb={4}>
-            <Devices deviceName="EMEA Devices" />
-          </AccordionPanel>
-        </AccordionItem>
-
-        <AccordionItem>
-          <AccordionButton>
-            <Flex>APAC Devices</Flex>
-            <AccordionIcon />
-          </AccordionButton>
-          <AccordionPanel pb={4}>
-            <Devices deviceName="APAC Devices" />
-          </AccordionPanel>
-        </AccordionItem>
+          toast({
+            title: 'Refreshed',
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+          });
+        }}
+      >
+        Refresh
+      </Button>
+      <Accordion allowMultiple>
+        {deviceProfiles?.map((d) => (
+          <DeviceProfileAccordionItem deviceProfile={d} key={d.Name} />
+        ))}
       </Accordion>
     </Flex>
   );
