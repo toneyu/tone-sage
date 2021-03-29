@@ -1,8 +1,10 @@
-import { Text, Divider, Flex, Spinner, Button, useToast } from '@chakra-ui/react';
+import { Button, Divider, Flex, Spinner, Text, useToast } from '@chakra-ui/react';
 import React from 'react';
+import { IncludeInProfile, SageType } from 'types/models';
+import { getSetting } from 'utils/deviceProfile';
+import { QueryKey } from '../constants/query-keys';
 import { getDeviceProfileAuth } from '../utils/api';
 import { useSageQuery } from '../utils/hooks';
-import { QueryKey } from '../constants/query-keys';
 
 const DeviceProfile: React.FC<{ deviceName: string }> = ({ deviceName }) => {
   const getDeviceProfileQuery = useSageQuery(QueryKey.DEVICE_PROFILE, getDeviceProfileAuth());
@@ -13,6 +15,13 @@ const DeviceProfile: React.FC<{ deviceName: string }> = ({ deviceName }) => {
     (deviceProfile) => deviceProfile.Name === deviceName,
   );
   const network = device?.Components?.find((component) => component.TypeName === 'Network');
+  const telnetSetting = getSetting(network, SageType.EnableTelnet);
+  const multicastSetting = getSetting(network, SageType.EnableMulticast);
+  const sshSetting = getSetting(network, SageType.EnableSSH);
+  const domainSetting = getSetting(network, SageType.Domain);
+  const networkDNSSetting = getSetting(network, SageType.NetworkDNS);
+  const primaryDNSSetting = getSetting(networkDNSSetting, SageType.PrimaryDNS);
+  const secondaryDNSSetting = getSetting(networkDNSSetting, SageType.SecondaryDNS);
 
   return (
     <Flex overflow="auto" dir="column">
@@ -41,33 +50,40 @@ const DeviceProfile: React.FC<{ deviceName: string }> = ({ deviceName }) => {
           {network && (
             <>
               Enable Telnet:{' '}
-              {network.Settings.find((component) => component.TypeName === 'EnableTelnet')?.Value
-                ? 'On'
-                : 'Off'}
+              {telnetSetting?.IncludeInProfile === IncludeInProfile.Yes
+                ? telnetSetting.Value
+                  ? 'On'
+                  : 'Off'
+                : 'N/A'}
               <Divider />
               Enable Multicast:{' '}
-              {network.Settings.find((component) => component.TypeName === 'EnableMulticast')?.Value
-                ? 'On'
-                : 'Off'}
+              {multicastSetting?.IncludeInProfile === IncludeInProfile.Yes
+                ? multicastSetting.Value
+                  ? 'On'
+                  : 'Off'
+                : 'N/A'}
               <Divider />
               Enable SSH:{' '}
-              {network.Settings.find((component) => component.TypeName === 'EnableSSH')?.Value
-                ? 'On'
-                : 'Off'}
+              {sshSetting?.IncludeInProfile === IncludeInProfile.Yes
+                ? sshSetting.Value
+                  ? 'On'
+                  : 'Off'
+                : 'N/A'}
               <Divider />
               Domain:{' '}
-              {network.Settings.find((component) => component.TypeName === 'Domain')?.Value ??
-                'N/A'}
+              {domainSetting?.IncludeInProfile === IncludeInProfile.Yes
+                ? domainSetting.Value ?? 'N/A'
+                : 'N/A'}
               <Divider />
               Primary DNS:{' '}
-              {network.Settings.find(
-                (component) => component.TypeName === 'NetworkDNS',
-              )?.Settings?.find((setting) => setting.TypeName === 'PrimaryDNS')?.Value ?? 'N/A'}
+              {primaryDNSSetting?.IncludeInProfile === IncludeInProfile.Yes
+                ? primaryDNSSetting.Value ?? 'N/A'
+                : 'N/A'}
               <Divider />
               Secondary DNS:{' '}
-              {network.Settings.find(
-                (component) => component.TypeName === 'NetworkDNS',
-              )?.Settings?.find((setting) => setting.TypeName === 'SecondaryDNS')?.Value ?? 'N/A'}
+              {secondaryDNSSetting?.IncludeInProfile === IncludeInProfile.Yes
+                ? secondaryDNSSetting.Value ?? 'N/A'
+                : 'N/A'}
               <Divider />
             </>
           )}
