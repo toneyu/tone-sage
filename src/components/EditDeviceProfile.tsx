@@ -129,86 +129,84 @@ const EditDeviceProfile: React.FC<{ deviceProfile: DeviceProfile }> = ({ deviceP
   );
 
   return (
-    <Flex overflow="auto" dir="column">
-      <Form
-        onSubmit={async () => {
-          await saveMutation.mutateAsync();
-          queryClient.invalidateQueries();
-          toast({
-            title: 'Saved',
-            status: 'success',
-            duration: 9000,
-            isClosable: true,
-          });
-        }}
-      >
-        <HStack flexDir="column" alignItems="start">
-          <FormControl isRequired>
-            <FormLabel>Name</FormLabel>
-            <Input value={name} onChange={(e) => setName(e.target.value)} />
-          </FormControl>
-          <FormControl isRequired>
-            <FormLabel>Description</FormLabel>
-            <Input value={description} onChange={(e) => setDescription(e.target.value)} />
-          </FormControl>
-          <EditDeviceProfileToggle
-            label="Telnet"
-            isChecked={telnetEnabled}
-            include={includeTelnet}
-            onChange={setTelnetEnabled}
-            onIncludeChange={setIncludeTelnet}
-          />
-          <EditDeviceProfileToggle
-            label="Multicast"
-            isChecked={multicastEnabled}
-            include={includeMulticast}
-            onChange={setMulticastEnabled}
-            onIncludeChange={setIncludeMulticast}
-          />
-          <EditDeviceProfileToggle
-            label="SSH"
-            isChecked={sshEnabled}
-            include={includeSSH}
-            onChange={setSSHEnabled}
-            onIncludeChange={setIncludeSSH}
-          />
-          <EditDeviceProfileTextInput
-            label="Domain"
-            value={domain}
-            include={includeDomain}
-            onChange={setDomain}
-            onIncludeChange={setIncludeDomain}
+    <Form
+      onSubmit={async () => {
+        await saveMutation.mutateAsync();
+        queryClient.invalidateQueries();
+        toast({
+          title: 'Saved',
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+        });
+      }}
+    >
+      <HStack flexDir="column" alignItems="start">
+        <FormControl isRequired>
+          <FormLabel>Name</FormLabel>
+          <Input value={name} onChange={(e) => setName(e.target.value)} />
+        </FormControl>
+        <FormControl isRequired>
+          <FormLabel>Description</FormLabel>
+          <Input value={description} onChange={(e) => setDescription(e.target.value)} />
+        </FormControl>
+        <EditDeviceProfileToggle
+          label="Telnet"
+          isChecked={telnetEnabled}
+          include={includeTelnet}
+          onChange={setTelnetEnabled}
+          onIncludeChange={setIncludeTelnet}
+        />
+        <EditDeviceProfileToggle
+          label="Multicast"
+          isChecked={multicastEnabled}
+          include={includeMulticast}
+          onChange={setMulticastEnabled}
+          onIncludeChange={setIncludeMulticast}
+        />
+        <EditDeviceProfileToggle
+          label="SSH"
+          isChecked={sshEnabled}
+          include={includeSSH}
+          onChange={setSSHEnabled}
+          onIncludeChange={setIncludeSSH}
+        />
+        <EditDeviceProfileTextInput
+          label="Domain"
+          value={domain}
+          include={includeDomain}
+          onChange={setDomain}
+          onIncludeChange={setIncludeDomain}
+        />
+
+        <HStack>
+          <Checkbox
+            isChecked={includeNetworkDNS}
+            onChange={(e) => setIncludeNetworkDNS(e.target.checked)}
           />
 
-          <HStack>
-            <Checkbox
-              isChecked={includeNetworkDNS}
-              onChange={(e) => setIncludeNetworkDNS(e.target.checked)}
+          <FormControl isRequired>
+            <FormLabel>Primary DNS</FormLabel>
+            <Input
+              isDisabled={!includeNetworkDNS}
+              value={primaryDNS}
+              onChange={(e) => setPrimaryDNS(e.target.value)}
             />
+          </FormControl>
 
-            <FormControl isRequired>
-              <FormLabel>Primary DNS</FormLabel>
-              <Input
-                isDisabled={!includeNetworkDNS}
-                value={primaryDNS}
-                onChange={(e) => setPrimaryDNS(e.target.value)}
-              />
-            </FormControl>
-
-            <FormControl isRequired>
-              <FormLabel>Secondary DNS</FormLabel>
-              <Input
-                isDisabled={!includeNetworkDNS}
-                value={secondaryDNS}
-                onChange={(e) => setSecondaryDNS(e.target.value)}
-              />
-            </FormControl>
-          </HStack>
-
-          <Button type="submit">Save</Button>
+          <FormControl isRequired>
+            <FormLabel>Secondary DNS</FormLabel>
+            <Input
+              isDisabled={!includeNetworkDNS}
+              value={secondaryDNS}
+              onChange={(e) => setSecondaryDNS(e.target.value)}
+            />
+          </FormControl>
         </HStack>
-      </Form>
-    </Flex>
+
+        <Button type="submit">Save</Button>
+      </HStack>
+    </Form>
   );
 };
 
