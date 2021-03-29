@@ -71,3 +71,16 @@ export const deleteDeviceProfilesAuth = (deviceProfileId: string) => (sessionId:
       sessionId,
     },
   });
+
+export const putDeviceProfilesAuth = (deviceProfile: DeviceProfile) => (sessionId: string) =>
+  axios.put<void>(
+    `${BASE_URL}/api/DeviceProfile`,
+    {
+      DeviceProfile: deviceProfile,
+    },
+    {
+      headers: {
+        sessionId,
+      },
+    },
+  );

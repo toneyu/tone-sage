@@ -62,12 +62,12 @@ const DeviceProfile: React.FC<{ deviceName: string }> = ({ deviceName }) => {
               Primary DNS:{' '}
               {network.Settings.find(
                 (component) => component.TypeName === 'NetworkDNS',
-              )?.Settings.find((setting) => setting.TypeName === 'PrimaryDNS')?.Value ?? 'N/A'}
+              )?.Settings?.find((setting) => setting.TypeName === 'PrimaryDNS')?.Value ?? 'N/A'}
               <Divider />
               Secondary DNS:{' '}
               {network.Settings.find(
                 (component) => component.TypeName === 'NetworkDNS',
-              )?.Settings.find((setting) => setting.TypeName === 'SecondaryDNS')?.Value ?? 'N/A'}
+              )?.Settings?.find((setting) => setting.TypeName === 'SecondaryDNS')?.Value ?? 'N/A'}
               <Divider />
             </>
           )}

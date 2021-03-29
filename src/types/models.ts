@@ -3,7 +3,7 @@ export type DeviceProfile = {
   Version: string;
   Name: string;
   Description: string;
-  Type: number;
+  Type: SageType;
   TypeName: string;
   UseSageVue: boolean;
   MonitorDevices: boolean;
@@ -12,23 +12,24 @@ export type DeviceProfile = {
 
 export type Component = {
   Name: string;
-  Type: number;
+  Type: SageType;
   TypeName: string;
-  IncludeInProfile: string;
+  IncludeInProfile: IncludeInProfile;
   Settings: Setting[];
 };
 
 export type Setting = {
-  Type: number;
-  TypeName: string;
-  ElementNumber: number;
-  DataType: string;
-  Value: boolean | string;
-  IncludeInProfile: string;
-  Settings: Setting[];
+  Type?: SageType;
+  TypeName?: string;
+  ElementNumber?: number;
+  DataType?: string;
+  Value?: boolean | string;
+  IncludeInProfile: IncludeInProfile;
+  Settings?: Setting[];
 };
 
-export enum SettingType {
+export enum SageType {
+  Network = 1,
   EnableTelnet = 101,
   EnableMulticast = 102,
   EnableSSH = 103,
@@ -69,7 +70,8 @@ export interface Devices {
   QtProErrors: string[];
 }
 
-export enum IncludeInProfileType {
+export enum IncludeInProfile {
   Yes = 'Yes',
   No = 'No',
+  NotApplicable = 'NotApplicable',
 }

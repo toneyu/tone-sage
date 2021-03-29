@@ -37,6 +37,7 @@ const Device: React.FC<{ device: TesiraDevice }> = ({ device }) => {
     <HStack key={device.SerialNumber}>
       <Text>Status: &quot;{device.Status}&quot;</Text>
       <Text>OccupiedStatus: &quot;{device.OccupiedStatus}&quot;</Text>
+      <Text>Model: &quot;{device.Model}&quot;</Text>
       <Text>SerialNumber: &quot;{device.SerialNumber}&quot;</Text>
       <Button
         color="red"

@@ -51,14 +51,7 @@ const DeviceProfileAccordionItem: React.FC<{ deviceProfile: DeviceProfileType }>
                 <EditDeviceProfile deviceProfile={deviceProfile} />,
                 [
                   {
-                    label: 'Save (TODO WIP)',
-                    onClick: () => {
-                      // noinspection JSIgnoredPromiseFromCall
-                      // query.refetch();
-                    },
-                  },
-                  {
-                    label: 'Cancel',
+                    label: 'Close',
                     onClick: () => {},
                   },
                 ],
