@@ -52,8 +52,28 @@ export const getDevicesAuth = () => (sessionId: string) =>
     },
   });
 
-export const postDeviceProfilesAuth = (deviceProfile: DeviceProfile) => (sessionId: string) =>
-  axios.post<void>(
+// export const postDeviceProfilesAuth = (deviceProfile: DeviceProfile) => (sessionId: string) =>
+//   axios.post<void>(
+//     `${BASE_URL}/api/DeviceProfile`,
+//     {
+//       DeviceProfile: deviceProfile,
+//     },
+//     {
+//       headers: {
+//         sessionId,
+//       },
+//     },
+//   );
+
+export const deleteDeviceProfilesAuth = (deviceProfileId: string) => (sessionId: string) =>
+  axios.delete<void>(`${BASE_URL}/api/DeviceProfile/${deviceProfileId}`, {
+    headers: {
+      sessionId,
+    },
+  });
+
+export const putDeviceProfilesAuth = (deviceProfile: DeviceProfile) => (sessionId: string) =>
+  axios.put<void>(
     `${BASE_URL}/api/DeviceProfile`,
     {
       DeviceProfile: deviceProfile,
@@ -65,15 +85,8 @@ export const postDeviceProfilesAuth = (deviceProfile: DeviceProfile) => (session
     },
   );
 
-export const deleteDeviceProfilesAuth = (deviceProfileId: string) => (sessionId: string) =>
-  axios.delete<void>(`${BASE_URL}/api/DeviceProfile/${deviceProfileId}`, {
-    headers: {
-      sessionId,
-    },
-  });
-
-export const putDeviceProfilesAuth = (deviceProfile: DeviceProfile) => (sessionId: string) =>
-  axios.put<void>(
+export const postDeviceProfilesAuth = (deviceProfile: DeviceProfile) => (sessionId: string) =>
+  axios.post<void>(
     `${BASE_URL}/api/DeviceProfile`,
     {
       DeviceProfile: deviceProfile,

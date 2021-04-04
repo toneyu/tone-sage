@@ -1,11 +1,15 @@
+import { AddIcon } from '@chakra-ui/icons';
 import { Accordion, Button, Flex, useToast } from '@chakra-ui/react';
 import { QueryKey } from 'constants/query-keys';
 import React from 'react';
+import { addModal } from 'store/actions/modals';
 import { getDeviceProfileAuth } from 'utils/api';
-import { useSageQuery } from 'utils/hooks';
+import { useSageQuery, useTypedDispatch } from 'utils/hooks';
+import AddDeviceProfile from './AddDeviceProfile';
 import DeviceProfileAccordionItem from './DeviceProfileAccordionItem';
 
 const AdministratorRoleVerification = () => {
+  const dispatch = useTypedDispatch();
   const getDeviceProfileQuery = useSageQuery(QueryKey.DEVICE_PROFILE, getDeviceProfileAuth());
   const deviceProfiles = getDeviceProfileQuery.data?.data.DeviceProfile;
   const toast = useToast();
@@ -25,6 +29,21 @@ const AdministratorRoleVerification = () => {
       >
         Refresh
       </Button>
+      <Button
+        onClick={() =>
+          dispatch(
+            addModal('Add Device Profile', <AddDeviceProfile />, [
+              {
+                label: 'Close',
+                onClick: () => {},
+              },
+            ]),
+          )
+        }
+      >
+        <AddIcon /> Add Device Profile
+      </Button>
+      s
       <Accordion allowMultiple>
         {deviceProfiles?.map((d) => (
           <DeviceProfileAccordionItem deviceProfile={d} key={d.Name} />
