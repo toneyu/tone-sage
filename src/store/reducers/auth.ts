@@ -8,12 +8,14 @@ type State = {
   username?: string;
   password?: string;
   sessionId?: string;
+  url?: string;
 };
 
 const initialState: State = {
   username: undefined,
   password: undefined,
   sessionId: undefined,
+  url: undefined,
 };
 
 const reducer = (state = initialState, action: RootAction): State => {
@@ -24,6 +26,7 @@ const reducer = (state = initialState, action: RootAction): State => {
         username: action.payload.username,
         password: action.payload.password,
         sessionId: action.payload.sessionId,
+        url: action.payload.url,
       };
     case getType(setSession):
       return {
@@ -47,5 +50,5 @@ export default persistReducer(
     key: 'AUTH',
     storage,
   },
-  reducer
+  reducer,
 );

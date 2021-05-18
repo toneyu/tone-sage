@@ -1,23 +1,28 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { DeviceProfile, Devices } from 'types/models';
 
-export const BASE_URL = 'https://stgrs1508.dir.svc.accenture.com/biampsagevue';
+// export const BASE_URL = 'https://stgrs1508.dir.svc.accenture.com/biampsagevue';
 
-export const postLogin = (username: string, password: string) =>
+export const postLogin = (username: string, password: string, url: string) =>
   axios.post<{
     LoginId: string;
     Role: string;
-  }>(`${BASE_URL}/api/login`, {
+  }>(`${url}/api/login`, {
     credentials: {
       username,
       password,
     },
   });
 
-export const getDeviceProfileAuth = () => (sessionId: string) =>
+export const getDeviceProfileAuth = () => (
+  sessionId: string,
+  _username: string,
+  _password: string,
+  url: string,
+) =>
   axios.get<{
     DeviceProfile: DeviceProfile[];
-  }>(`${BASE_URL}/api/DeviceProfile`, {
+  }>(`${url}/api/DeviceProfile`, {
     headers: {
       sessionId,
     },
@@ -25,14 +30,15 @@ export const getDeviceProfileAuth = () => (sessionId: string) =>
 
 export const putRebootAuth = (serialNumber: string) => (
   sessionId: string,
-  _: string,
+  _username: string,
   password: string,
+  url: string,
 ) =>
   axios.put<{
     Result: boolean;
     Error?: string;
   }>(
-    `${BASE_URL}/api/Devices/${serialNumber}/Reboot`,
+    `${url}/api/Devices/${serialNumber}/Reboot`,
     {
       credentials: {
         password,
@@ -45,8 +51,13 @@ export const putRebootAuth = (serialNumber: string) => (
     },
   );
 
-export const getDevicesAuth = () => (sessionId: string) =>
-  axios.get<Devices>(`${BASE_URL}/api/Devices`, {
+export const getDevicesAuth = () => (
+  sessionId: string,
+  _username: string,
+  _password: string,
+  url: string,
+) =>
+  axios.get<Devices>(`${url}/api/Devices`, {
     headers: {
       sessionId,
     },
@@ -54,7 +65,7 @@ export const getDevicesAuth = () => (sessionId: string) =>
 
 // export const postDeviceProfilesAuth = (deviceProfile: DeviceProfile) => (sessionId: string) =>
 //   axios.post<void>(
-//     `${BASE_URL}/api/DeviceProfile`,
+//     `${url}/api/DeviceProfile`,
 //     {
 //       DeviceProfile: deviceProfile,
 //     },
@@ -65,16 +76,26 @@ export const getDevicesAuth = () => (sessionId: string) =>
 //     },
 //   );
 
-export const deleteDeviceProfilesAuth = (deviceProfileId: string) => (sessionId: string) =>
-  axios.delete<void>(`${BASE_URL}/api/DeviceProfile/${deviceProfileId}`, {
+export const deleteDeviceProfilesAuth = (deviceProfileId: string) => (
+  sessionId: string,
+  _username: string,
+  _password: string,
+  url: string,
+) =>
+  axios.delete<void>(`${url}/api/DeviceProfile/${deviceProfileId}`, {
     headers: {
       sessionId,
     },
   });
 
-export const putDeviceProfilesAuth = (deviceProfile: DeviceProfile) => (sessionId: string) =>
+export const putDeviceProfilesAuth = (deviceProfile: DeviceProfile) => (
+  sessionId: string,
+  _username: string,
+  _password: string,
+  url: string,
+) =>
   axios.put<void>(
-    `${BASE_URL}/api/DeviceProfile`,
+    `${url}/api/DeviceProfile`,
     {
       DeviceProfile: deviceProfile,
     },
@@ -85,9 +106,14 @@ export const putDeviceProfilesAuth = (deviceProfile: DeviceProfile) => (sessionI
     },
   );
 
-export const postDeviceProfilesAuth = (deviceProfile: DeviceProfile) => (sessionId: string) =>
+export const postDeviceProfilesAuth = (deviceProfile: DeviceProfile) => (
+  sessionId: string,
+  _username: string,
+  _password: string,
+  url: string,
+) =>
   axios.post<void>(
-    `${BASE_URL}/api/DeviceProfile`,
+    `${url}/api/DeviceProfile`,
     {
       DeviceProfile: deviceProfile,
     },

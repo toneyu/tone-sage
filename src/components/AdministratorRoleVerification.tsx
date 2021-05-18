@@ -43,7 +43,7 @@ const AdministratorRoleVerification = () => {
       >
         <AddIcon /> Add Device Profile
       </Button>
-      s
+
       <Accordion allowMultiple>
         {deviceProfiles?.map((d) => (
           <DeviceProfileAccordionItem deviceProfile={d} key={d.Name} />

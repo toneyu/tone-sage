@@ -2,10 +2,11 @@ import { createAction } from 'typesafe-actions';
 
 export const login = createAction(
   'auth/LOGIN',
-  (username: string, password: string, sessionId: string) => ({
+  (username: string, password: string, sessionId: string, url: string) => ({
     username,
     password,
     sessionId,
+    url,
   }),
 )();
 

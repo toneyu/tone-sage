@@ -1,4 +1,4 @@
-import type { TypedDispatch } from '@types';
+import type { TypedDispatch } from 'types';
 import React from 'react';
 
 export type ActionButton = {

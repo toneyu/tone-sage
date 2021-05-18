@@ -2,9 +2,9 @@ import { Button, HStack, Spinner, Text } from '@chakra-ui/react';
 import React from 'react';
 import { logout } from 'store/actions/auth';
 import { addModal } from 'store/actions/modals';
+import { TesiraDevice } from 'types/models';
 import { putRebootAuth } from 'utils/api';
 import { useSageMutation, useTypedDispatch } from 'utils/hooks';
-import { TesiraDevice } from 'types/models';
 
 const Device: React.FC<{ device: TesiraDevice }> = ({ device }) => {
   const dispatch = useTypedDispatch();

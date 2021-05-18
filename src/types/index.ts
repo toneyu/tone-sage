@@ -5,13 +5,6 @@ import { RootState } from 'store/reducers';
 
 export type TypedThunkDispatch = ThunkDispatch<RootState, unknown, RootAction>;
 export type TypedDispatch = Dispatch<RootAction>;
-export type TypedThunkAction = ThunkAction<
-  void,
-  RootState,
-  unknown,
-  RootAction
->;
+export type TypedThunkAction = ThunkAction<void, RootState, unknown, RootAction>;
 
-export type TypedSelector<TSelected = unknown> = (
-  state: RootState
-) => TSelected;
+export type TypedSelector<TSelected = unknown> = (state: RootState) => TSelected;

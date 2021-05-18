@@ -7,7 +7,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout, setSession } from 'store/actions/auth';
 import { addModal } from 'store/actions/modals';
 import { RootState } from 'store/reducers';
-import { passwordSelector, sessionIdSelector, usernameSelector } from 'store/selectors/auth';
+import {
+  passwordSelector,
+  sessionIdSelector,
+  urlSelector,
+  usernameSelector,
+} from 'store/selectors/auth';
 import { postLogin } from 'utils/api';
 import { Optional } from 'utility-types';
 
@@ -20,33 +25,36 @@ export const useTypedSelector: <TSelected = unknown>(
 
 export const useSageQuery = <R>(
   queryKey: QueryKey,
-  apiAuth: (sessionId: string, username: string, password: string) => Promise<R>,
+  apiAuth: (sessionId: string, username: string, password: string, url: string) => Promise<R>,
 ) => {
   let res: R | undefined;
   const dispatch = useTypedDispatch();
   let sessionId = useSelector(sessionIdSelector);
   const username = useSelector(usernameSelector);
   const password = useSelector(passwordSelector);
+  const url = useSelector(urlSelector);
+
   const query = useQuery(
     queryKey,
     async () => {
-      if (username !== undefined && password !== undefined) {
+      if (username !== undefined && password !== undefined && url !== undefined) {
         if (sessionId === undefined) {
-          const postLoginRes = await postLogin(username, password);
+          const postLoginRes = await postLogin(username, password, url);
           sessionId = postLoginRes.data.LoginId;
           dispatch(setSession(sessionId));
         }
 
         try {
-          res = await apiAuth(sessionId, username, password);
+          res = await apiAuth(sessionId, username, password, url);
         } catch (error) {
           console.log(error);
           // FIXME: If status code is not unauthorized if the session key is invalid/expired find out which status code it is.
           if (error?.response?.status === StatusCodes.UNAUTHORIZED) {
-            const postLoginRes = await postLogin(username, password);
+            const postLoginRes = await postLogin(username, password, url);
             sessionId = postLoginRes.data.LoginId;
             dispatch(setSession(sessionId));
-            res = await apiAuth(sessionId, username, password);
+
+            res = await apiAuth(sessionId, username, password, url);
           }
           throw error;
         }
@@ -114,32 +122,35 @@ export const useSageQuery = <R>(
 };
 
 export const useSageMutation = <R = unknown, TError = Error, TVariables = void, TContext = unknown>(
-  apiAuth: (sessionId: string, username: string, password: string) => Promise<R>,
+  apiAuth: (sessionId: string, username: string, password: string, url: string) => Promise<R>,
   options?: UseMutationOptions<R, TError, TVariables, TContext>,
 ) => {
   const dispatch = useTypedDispatch();
   let sessionId = useSelector(sessionIdSelector);
   const username = useSelector(usernameSelector);
   const password = useSelector(passwordSelector);
+  const url = useSelector(urlSelector);
+
   const mutation = useMutation(async () => {
     let res: R;
-    if (username !== undefined && password !== undefined) {
+    if (username !== undefined && password !== undefined && url !== undefined) {
       if (sessionId === undefined) {
-        const postLoginRes = await postLogin(username, password);
+        const postLoginRes = await postLogin(username, password, url);
         sessionId = postLoginRes.data.LoginId;
         dispatch(setSession(sessionId));
       }
 
       try {
-        res = await apiAuth(sessionId, username, password);
+        res = await apiAuth(sessionId, username, password, url);
       } catch (error) {
         console.log(error);
         // FIXME: If status code is not unauthorized if the session key is invalid/expired find out which status code it is.
         if (error?.response?.status === StatusCodes.UNAUTHORIZED) {
-          const postLoginRes = await postLogin(username, password);
+          const postLoginRes = await postLogin(username, password, url);
           sessionId = postLoginRes.data.LoginId;
           dispatch(setSession(sessionId));
-          res = await apiAuth(sessionId, username, password);
+
+          res = await apiAuth(sessionId, username, password, url);
         }
         throw error;
       }

@@ -10,3 +10,5 @@ export const isAuthenticatedSelector = (state: RootState) =>
   state.auth.username !== undefined && state.auth.password !== undefined;
 
 export const isRehydratedSelector = (state: RootState) => state.auth._persist.rehydrated;
+
+export const urlSelector = (state: RootState) => state.auth.url;

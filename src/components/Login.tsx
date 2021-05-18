@@ -22,6 +22,7 @@ const Login: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<string>();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [url, setUrl] = useState('');
   const dispatch = useTypedDispatch();
 
   return (
@@ -31,9 +32,9 @@ const Login: React.FC = () => {
           setIsLoading(true);
           setErrorMessage(undefined);
           try {
-            const postLoginRes = await postLogin(username, password);
+            const postLoginRes = await postLogin(username, password, url);
             const sessionId = postLoginRes.data.LoginId;
-            dispatch(login(username, password, sessionId));
+            dispatch(login(username, password, sessionId, url));
           } catch (error) {
             if (error.response) {
               // Request made and server responded
@@ -74,6 +75,10 @@ const Login: React.FC = () => {
           />
         </FormControl>
         <Checkbox onChange={(e) => setShowPassword(e.target.checked)}>Show Password</Checkbox>
+        <FormControl isRequired>
+          <FormLabel>URL</FormLabel>
+          <Input value={url} onChange={(e) => setUrl(e.target.value)} />
+        </FormControl>
         <Button type="submit">Login</Button>
       </Flex>
       {isLoading && <Spinner />}
